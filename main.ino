@@ -8,7 +8,7 @@ unsigned int zt = 0;
 unsigned int err = 0;
 int addr = 0;
 int address = 0;
-char value[9];
+byte value;
 String upwd;
 
 //Define the keymap
@@ -47,12 +47,20 @@ void flash_w(int a) {
 
 void setup() {
   Serial.begin(115200);
-  pinMode(13, OUTPUT);
+  pinMode(12, OUTPUT);
   pinMode(11, OUTPUT); //设置数字IO脚模式，OUTPUT为输出
-  pinMode(12, INPUT);
+  pinMode(10, INPUT);
+  digitalWrite(12, HIGH);
   sound(120);
   Serial.println("欢迎使用");
-  if (digitalRead(12) == 1) {
+  if (err > 5 | value== 1) {
+    flash_w(1);
+    sound(60); sound(60); sound(60); sound(60); sound(60);
+    Serial.println("已锁止");
+    while (true);
+  }
+
+  if (digitalRead(10) == 1) {
     flash_w(0);
     sound(50);
     zt = 1;
@@ -61,22 +69,22 @@ void setup() {
 }
 
 void loop() {
-//  int x;
-//  for(x=0;x<8;x++){
-//    value[x] = EEPROM.read(address);
-//    address++;
-//    }
-//  upwd=value;
-//  Serial.print("密码为：");
-//  Serial.println(upwd.c_str());
-  
-  if (err > 5 | value[0] == 1) {
+  //  int x;
+  //  for(x=0;x<8;x++){
+  //    value[x] = EEPROM.read(address);
+  //    address++;
+  //    }
+  //  upwd=value;
+  //  Serial.print("密码为：");
+  //  Serial.println(upwd.c_str());
+
+  if (err > 5 | value == 1) {
     flash_w(1);
     sound(60); sound(60); sound(60); sound(60); sound(60);
     Serial.println("已锁止");
     while (true);
   }
-  
+
   char key1 = keypad.getKey();
   if (key1 != NO_KEY) {
     int key = key1 - 48;
@@ -131,26 +139,30 @@ void loop() {
       Serial.print("你的密码：");
       Serial.println(pwd); sound(80);
       if (pwd == "20207979") {
+        Serial.println("启动");
         sound(100);
-        digitalWrite(13, HIGH);
-        delay(4000);
-        digitalWrite(13, LOW);
+        digitalWrite(12, LOW);
+        delay(5000);
+        digitalWrite(12, HIGH);
         sound(100);
         pwd = "";
       } else {
+        Serial.println("密码错误");
         sound(100); sound(100); sound(100);
         err = err + 1;
+        pwd="";
       }
-    }else if (key==20 & zt==1){
-      Serial.print("修改密码为：");
-      Serial.println(pwd);
-      pwd="0"+pwd;
-      char *p=pwd.c_str(); ;
-      int i; 
-      for(i=0;i<9;i++){
-        flash_w(p[i]);
-      }
-      sound(80);
+      //    }else if (key==20 & zt==1){
+      //      Serial.print("修改密码为：");
+      //      Serial.println(pwd);
+      //      pwd="0"+pwd;
+      //      char *p=pwd.c_str(); ;
+      //      int i;
+      //      for(i=0;i<9;i++){
+      //        flash_w(p[i]);
+      //      }
+      //      sound(80);
+      //    }
     }
   }
 }

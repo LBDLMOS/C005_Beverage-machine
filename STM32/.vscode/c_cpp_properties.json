@@ -1,0 +1,67 @@
+{
+    "configurations": [
+        {
+            "name": "keil",
+            "includePath": [
+                "c:\\text\\C005\\CMSIS",
+                "c:\\text\\C005\\Lib\\inc",
+                "c:\\text\\C005\\Lib\\src",
+                "c:\\text\\C005\\User",
+                "c:\\text\\C005\\Startup",
+                "c:\\text\\C005\\Basic\\delay",
+                "c:\\text\\C005\\Basic\\sys",
+                "c:\\text\\C005\\Hardware\\LED",
+                "c:\\text\\C005\\Hardware\\BUZZER",
+                "c:\\text\\C005\\Hardware\\KEYPAD4x4",
+                "c:\\text\\C005\\Hardware\\TM1640",
+                "c:\\text\\C005\\Basic\\flash",
+                "c:\\text\\C005\\Basic\\rtc"
+            ],
+            "defines": [
+                "__CC_ARM",
+                "__arm__",
+                "__align(x)=",
+                "__ALIGNOF__(x)=",
+                "__alignof__(x)=",
+                "__asm(x)=",
+                "__forceinline=",
+                "__global_reg(n)=",
+                "__inline=",
+                "__int64=long long",
+                "__INTADDR(expr)=",
+                "__irq=",
+                "__packed=",
+                "__pure=",
+                "__smc(n)=",
+                "__svc(n)=",
+                "__svc_indirect(n)=",
+                "__svc_indirect_r7(n)=",
+                "__value_in_regs=",
+                "__weak=",
+                "__writeonly=",
+                "__declspec(x)=",
+                "__attribute__(x)=",
+                "__nonnull__(x)=",
+                "__register=",
+                "__va_start(x)=",
+                "__va_arg(x)=",
+                "__va_end(x)=",
+                "__breakpoint(x)=",
+                "__ror=",
+                "__clz=",
+                "USE_STDPERIPH_DRIVER",
+                "STM32F10X_MD"
+            ],
+            "intelliSenseMode": "${default}"
+        },
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:\\Users\\Lenovo\\AppData\\Local\\Arduino15\\packages\\esp8266\\tools\\**",
+                "C:\\Users\\Lenovo\\AppData\\Local\\Arduino15\\packages\\esp8266\\hardware\\esp8266\\2.7.1\\**"
+            ],
+            "forcedInclude": []
+        }
+    ],
+    "version": 4
+}
